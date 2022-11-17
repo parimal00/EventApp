@@ -7,15 +7,17 @@ Run the following command
 
 i)git clone git@github.com:parimal00/EventApp.git (inside xampp/htdocs)
 
-ii)composer install
+ii) cd EventApp
 
-iii)cp .env.example .env
+iIi)composer install
 
-iv)php artisan key:generate
+iv)cp .env.example .env
 
-v)npm install
+v)php artisan key:generate
 
-vi)npm run dev
+vi)npm install
 
-vii)php artisan serve
+vii)npm run dev
+
+viii)php artisan serve
 
