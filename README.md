@@ -21,3 +21,5 @@ vii)npm run dev
 
 viii)php artisan serve
 
+ix)create database and run php artisan migrate
+
