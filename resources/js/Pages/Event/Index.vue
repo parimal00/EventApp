@@ -164,7 +164,7 @@ export default {
 
     deleteEvent(event_id) {
       axios.delete("/api/v1/events/" + event_id).then((response) => {
-        if (response.status == 202) {
+        if (response.status == 200) {
           this.getEvents();
         }
       });
