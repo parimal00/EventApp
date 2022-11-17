@@ -15,7 +15,8 @@ class Event extends Model
         'upcomingEvents',
         'finishedEvents',
         'finishedWithInAWeekEvents',
-        'runningEvents'
+        'runningEvents',
+        'finishedEventsInLastWeek'
     ];
 
     public function scopeUpcomingEvents($query)
@@ -32,7 +33,12 @@ class Event extends Model
     }
     public function scopeRunningEvents($query)
     {
-        $query->where('start_date','<=', today())
+        $query->where('start_date', '<=', today())
             ->where('end_date', '>=', today());
+    }
+    public function scopeFinishedEventsInLastWeek($query)
+    {
+        $query->where('end_date', '>=', today()->subDays(7))
+        ->where('end_date','<=',today());
     }
 }
