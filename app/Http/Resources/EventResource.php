@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Route;
 
 class EventResource extends JsonResource
 {
@@ -14,12 +16,15 @@ class EventResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
-    }
-    public function with($request)
-    {
+        // return parent::toArray($request);
         return [
-            'success' => true
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => (Route::currentRouteName() == "events.index" && strlen($this->description) > 27) ?  substr($this->description, 0, 27) . "..." : $this->description,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'readable_start_date' => Carbon::parse($this->start_date)->diffForHumans(today()),
+            'readable_end_date' => Carbon::parse($this->end_date)->diffForHumans(today())
         ];
     }
 }

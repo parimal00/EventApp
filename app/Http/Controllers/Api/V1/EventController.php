@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventStoreRequest;
+use App\Http\Requests\EventUpdateRequest;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -17,8 +18,13 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::orderBy('start_date', 'asc')->get();
-        return EventResource::collection($events)->additional(['message' => 'Events fetched successfully']);
+        $events = Event::orderBy('start_date', 'asc')
+            ->filter(request('status'))
+            ->get();
+        return EventResource::collection($events)->additional([
+            'message' => 'Events fetched successfully',
+            'event_status' => Event::STATUS
+        ]);
     }
 
     /**
@@ -51,7 +57,7 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EventStoreRequest $request, Event $event)
+    public function update(EventUpdateRequest $request, Event $event)
     {
         $event->update($request->validated());
         return response()->noContent();

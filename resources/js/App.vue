@@ -1,17 +1,14 @@
 <template>
   <div>
-    <Home />
+    <EventIndex />
   </div>
 </template>
 
 <script>
-import Create from "./Components/Create.vue";
-import Home from "./Components/Home.vue";
+import EventIndex from "./Pages/Event/Index.vue";
 export default {
-  components: { Create, Home },
-  mounted() {
-    axios.get("/api/test").then((response) => console.log(response));
-  },
+  components: { EventIndex },
+  mounted() {},
 };
 </script>
 

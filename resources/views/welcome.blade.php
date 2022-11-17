@@ -26,5 +26,9 @@
         </div>
 
         @vite('resources/js/app.js')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-toastr/dist/vue-toastr.umd.min.js"></script>
+
     </body>
 </html>
